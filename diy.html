@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>DIY Numogram</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="cypherpunk_1028.png" sizes="any" type="image/svg+xml">
+        <!-- Place favicon.ico in the root directory -->
+
+        <style type="text/css">
+         @-ms-viewport { width: device-width; } @-o-viewport { width: device-width; } @viewport { width: device-width; initial-scale=1.0; }
+         body {font-size: 1.0em; font-family: "Iowan Old Style", "Noto Serif", Georgia, Palatino, Serif, Arial; line-height: 140%; color: #000000;}
+         h1 {text-align: center; font-size: 155%; font-variant: small-caps; line-height: 100%; max-width: 600px; margin-bottom: 10px; margin-top: 0.75em; margin-left: auto; margin-right: auto;}
+         h2 {text-align: center; font-size: 115%; line-height: 140%; max-width: 600px; padding-top: 12px; margin-bottom: 25px; margin-left: auto; margin-right: auto;}
+         a {font-size: 100%; font-weight: bold; font-family: "Iowan Old Style", "Noto Serif", Georgia, Palatino, Serif, Arial; line-height: 140%; outline: none; text-decoration: none; color: #326891;}
+         a:hover {text-decoration: underline; opacity: 1; transition: opacity 0s; -moz-transition: opacity 0s; -webkit-transition: opacity 0s;}
+         nav, div, article {text-indent: 0px; margin-bottom: 0px; margin-top: 0px; max-width: 600px; margin-left: auto; margin-right: auto; vertical-align:top; position:relative;}
+         p {text-indent: 2.75em; text-align: justify; font-variant-ligatures: normal; margin-left: 0px; margin-bottom: 0px; margin-top: 0px;}
+         p.i0 {text-indent: 0px;}
+         p.i1 {margin-bottom: 7px;}
+         img {display: block; margin-left: auto; margin-right: auto;}
+         #redtext {color:red;}
+         #blutext {color:blue;}
+         #gretext {color:green;}
+        </style>
+    </head>
+
+    <body>
+        <nav style=" margin-bottom: 2em; margin-left: auto; margin-right: auto; text-align: center;">
+            <div style="white-space: nowrap; position: relative; float: left; text-align: left;"><a href="index.html">◄ Gramculator</a></div>&nbsp;<div style="white-space: nowrap; position: relative; float: right; text-align: right;"><a href="index.html">More resources ►</a></div>
+        </nav>
+        <h1>Fundamentals of The Numogram</h1>
+        <h2>Calculating the numogram by hand</h2>
+        <article>
+            <img src="diy3.png" width="40%" alt="Infographic" />
+            <p class="i1">
+                We start with the ten zones which are labeled with the numbers <span id="redtext">0</span> through <span id="redtext">9</span>.
+                The ten zones are paired off into the five "<span id="redtext">syzygies</span>".
+                Each <span id="redtext">syzygy</span> adds to nine.
+                When writing the name of each <span id="redtext">syzygy</span>, the larger number is placed before the smaller and separated with a double colon.
+                E.g., <span id="redtext">9::0</span>, <span id="redtext">8::1</span>, <span id="redtext">7::2</span>, <span id="redtext">6::3</span>, <span id="redtext">5::4</span>.
+            </p>
+            <p class="i1">
+                Next are the five <span id="blutext">currents</span>, the <span id="blutext">blue arrows</span> that point between one <span id="redtext">syzygy</span> pair to another zone.
+                To ge them, take the smaller number from each <span id="redtext">syzygy</span> andsubtract it from it'as larger pair.
+                In this example, we have <span id="redtext">syzygy 7::2</span>.
+                So to find where the <span id="blutext">current goes:</span> <span id ="redtext">7</span> - <span id ="redtext">2</span> <span id="blutext">=</span> <span id ="redtext">5</span>.
+                A <span id ="blutext">current</span> is drawn from <span id ="redtext">7::2</span> to <span id ="redtext">5</span>.
+            </p>
+            <p class="i1">
+                Last are the <span id="gretext">gates</span>.
+                To get the <span id="gretext">gates</span> we take every zone  an culminate the number, which is to say we count down to zore from that zone and add these numbers.
+                For example, with zone 5 we count <span id="redtext">5</span>, 4, 3, 2, 1, 0.
+                So for zone <span id ="redtext">5</span> we have <span id ="redtext">5</span> + 4 + 3 + 2 + 1 + 0 which = <span id="gretext">15</span>.
+                Now that we know the <span id="gretext">gate's</span> number is <span id="gretext">15</span>, but how do we know which zone to connect <span id="gretext">15</span> to from <span id ="redtext">5</span>?:w
+                Because <span id ="redtext">5</span> culminates to a number with more than a single digit (<span id="gretext">15</span>), we now have to plex it.
+                To plex, you simply add each individual digit.
+                So <span id="gretext">15</span> is 1 + 5 which =<span id ="redtext">6</span>.
+                Now we know gate <span id="gretext">15</span> goes from zone <span id ="redtext">5</span> to zone <span id ="redtext">6</span>.
+            </p>
+            <p class="i1">
+                These are the basic building blocks of any #-gram system as well.
+                The important thing when constructing any other #-gram is to remember that all arithmetic must be done in the base of that #-gram.
+                So all the math of the hexagram must be done in base-6, duodecigram base-12, etc.
+            </p>
+        </article>
+        <div style="margin-bottom: 2em; margin-left: auto; margin-right: auto; text-align: center;"><a href="infographic.jpg">Same guide, but as an image.</a></div>
+    </body>
+</html>
