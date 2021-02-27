@@ -7,65 +7,241 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="cypherpunk_1028.png" sizes="any" type="image/svg+xml">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
         <!-- Place favicon.ico in the root directory -->
         <style type="text/css" media="screen">
          body { margin:1em auto; max-width:60em; padding:0 .62em; font-size: 1.0em; font-family: "Iowan Old Style", "Noto Serif", Georgia, Palatino, Serif, Arial; line-height: 140%; color: #000000;}
-         h1 {text-align: center; font-size: 155%; font-variant: small-caps; line-height: 100%; max-width: 600px; margin-bottom: 10px; margin-top: 0.75em; margin-left: auto; margin-right: auto;}
-         h2 {text-align: center; font-size: 115%; line-height: 140%; max-width: 650px; padding-top: 12px; margin-bottom: 25px; margin-left: auto; margin-right: auto;}
+         h1 {text-align: center; font-size: 155%; font-weight: bold; font-variant: small-caps; line-height: 100%; max-width: 600px; margin-bottom: 10px; margin-top: 0.75em; margin-left: auto; margin-right: auto;}
+         h2 {text-align: center; font-size: 115%; font-weight: bold; line-height: 140%; max-width: 650px; padding-top: 12px; margin-bottom: 25px; margin-left: auto; margin-right: auto;}
+         h3 {text-align: center; font-size: 115%; font-weight: bold; line-height: 120%; max-width: 650px; padding-top: 12px; margin-bottom: 25px; margin-left: auto; margin-right: auto;}
          a {font-size: 100%; font-weight: bold; font-family: "Iowan Old Style", "Noto Serif", Georgia, Palatino, Serif, Arial; line-height: 140%; outline: none; text-decoration: none; color: #326891;}
          a:hover {text-decoration: underline; opacity: 1; transition: opacity 0s; -moz-transition: opacity 0s; -webkit-transition: opacity 0s;}
          p { text-align: center;}
-         .flex-container { display: flex; flex-wrap: wrap; justify-content: center; }
-         .flex-container > div { margin: 10px; padding: 20px; font-size: 1.2em; font-family: monospace;}
+         #input {width: 600px;}
+         span {padding-top: 20px; text-align: left;}
+         .flex-container { display: flex; flex-wrap: wrap; justify-content: center; height: 550px; overflow: auto; line-height: 150%; }
+         .flex-container > div { margin: 10px; padding: 20px; font-size: 1.1em; font-family: monospace;}
         </style>
     </head>
     <body>
         <h1>Gramculator</h1>
         <h2>A tool for calculating <a href="https://www.numogram.xyz/">numograms</a> with different numerical bases.</h2>
         <p>
-            <label for="input">Enter a base (2-36):</label>
-            <input type="number" id="input" min="2" max="36" size="2" value="10" />
-            <button onclick="start()">Calculate!</button>
+            <label id="inputAlphabetLength" class="label" for="input">Enter numerical alphabet (up to 2<sup>31</sup> characters in length) below:</label>
+            <input type="text" class="input" id="input" value="0123456789" /><br /><br />
+			<button onclick="start()" class="button is-info">Calculate!</button>
+            <br /><br />
             <p><a href="diy.html">I want to do it myself!</a></p>
             <div class="flex-container">
                 <div id="zone"></div>
                 <div id="gate"></div>
                 <div id="syzy"></div>
             </div>
+            <h2>Example Alphabets:</h2>
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 2 (<a href="https://en.wikipedia.org/wiki/Binary_number">binary</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="01" readonly id="base2">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 4 (<a href="https://en.wikipedia.org/wiki/Quaternary_numeral_system">quaternary</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="0123" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 8 (<a href="https://en.wikipedia.org/wiki/Octal">octal</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="01234567" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 10 (<a href="https://en.wikipedia.org/wiki/Decimal">decimal</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="0123456789" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 12 (<a href="https://en.wikipedia.org/wiki/Dozenal">dozenal</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="0123456789↊↋" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 16 (<a href="https://en.wikipedia.org/wiki/Hexadecimal">hex</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="0123456789ABCDEF" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 22 (<a href="https://en.wikipedia.org/wiki/Hebrew_alphabet">Hebrew Alphabet</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="אבגדהוזחטיכלמנםעפצקרשת" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 24 (<a href="https://en.wikipedia.org/wiki/Elder_Futhark">Elder Futhark</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 32 (<a href="https://tools.ietf.org/html/rfc4648#section-6">RFC 4648</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" id="base32" type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZ234567" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 32 (<a href="https://philzimmermann.com/docs/human-oriented-base-32-encoding.txt">z-base-32</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="ybndrfg8ejkmcpqxot1uwisza345h769" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 58 (<a href="https://en.wikipedia.org/wiki/Base58">bitcoin</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 64 (<a href="https://tools.ietf.org/html/rfc4648#section-5">url safe</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 64 (<a href="https://tools.ietf.org/html/rfc3548#section-3">url unsafe</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
         </p>
+        <script src="base.js" type="text/javascript"></script>
         <script>
          function start() {
-             var base = Number(document.getElementById("input").value);
-             var zone = [];
-             var text ="<h3>Zones:</h3>";
-             var i;
-             for (i = 0; i < base; i++) {
-                 zone[i] = i;
-                 text += "Zn-"+zone[i].toString(base) + "<br>";
-             }
-             document.getElementById("zone").innerHTML = text;
-             getPairs(zone.length-1);
-             getGates(zone, base);
+	         var base = document.getElementById("input").value;
+	         var zone = [];
+	         var text ="<h3>Zones:</h3>";
+	         for (var i = 0; i < base.length; i++) {
+		         zone[i] = i;
+		         text += "Zn-"+ Convert(String(zone[i]), base) + "<br>";
+	         }
+	         document.getElementById("zone").innerHTML = text;
+	         getPairs(zone.length-1, base);
+	         getGates(zone, base);
+	         Update();
          }
-         function getPairs(x) {
-             var text ="<h3>Syzygies and currents:</h3>";
-             var i;
-             for (i = 0;i < x;i++) {
-                 var big = x-i;
-                 var current = big - i;
-                 if (current > 0) {text += big.toString(x+1)+"::"+i.toString(x+1)+", current to "+ current.toString(x+1) +"<br>";}
-             }
-             document.getElementById("syzy").innerHTML = text;
+         function getPairs(x, y) {
+	         var text ="<h3>Syzygies:</h3>";
+	         for (var i = 0;i < x;i++) {
+		         var big = x-i;
+		         var current = big - i;
+		         if (current > 0) {text += Convert(String(big), y)+"::"+ Convert(String(i), y)+" => "+ Convert(String(current), y) +"<br>";}
+	         }
+	         document.getElementById("syzy").innerHTML = text;
          }
+
          function getGates(x, y) {
-             var text = "<h3>Gates:</h3>";
-             var i;
-             const cumulativeSum = (sum => value => sum += value)(0);
-             var gate = x.map(cumulativeSum);
-             for (i=0;i<gate.length;i++) {
-                 text+= "Gt-"+gate[i].toString(y) +"<br>";
-             }
-             document.getElementById("gate").innerHTML = text;
+	         var text = "<h3>Gates:</h3>";
+	         const gatename = (sum => value => sum += value)(0);
+	         var gate = x.map(gatename);
+	         for (var i=0;i<gate.length;i++) {
+		         var foo = String(gate[i]);
+		         var gatevalue = Convert(foo, y);
+		         text+= "Gt-"+gatevalue+"<br>";
+	         }
+	         document.getElementById("gate").innerHTML = text;
          }
         </script>
     </body>
