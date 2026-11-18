@@ -66,6 +66,19 @@
 
 			<div class="field is-horizontal">
 				<div class="field-label">
+					<label class="label">Base 6 (<a href="https://en.wikipedia.org/wiki/Senary">senary</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="012345" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
 					<label class="label">Base 8 (<a href="https://en.wikipedia.org/wiki/Octal">octal</a>)</label>
 				</div>
 				<div class="field-body">
@@ -124,6 +137,19 @@
 					<div class="field has-addons">
 						<div class="control is-expanded">
 							<input class="input" type="text" value="אבגדהוזחטיכלמנםעפצקרשת" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 24 (<a href="https://www.elizabethan-era.org.uk/old-english-letters.htm">Elizabethan English</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="ABCDEFGHIKLMNOPQRSTUWXYZ" readonly>
 						</div>
 					</div>
 				</div>
@@ -215,6 +241,19 @@
 					<div class="field has-addons">
 						<div class="control is-expanded">
 							<input class="input" type="text" value="ybndrfg8ejkmcpqxot1uwisza345h769" readonly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="field is-horizontal">
+				<div class="field-label">
+					<label class="label">Base 33 (<a href="https://alektryon.github.io/gematria/">Baconian Alphanumeric</a>)</label>
+				</div>
+				<div class="field-body">
+					<div class="field has-addons">
+						<div class="control is-expanded">
+							<input class="input" type="text" value="0123456789ABCDEFGHIKLMNOPQRSTUWXYZ" readonly>
 						</div>
 					</div>
 				</div>
@@ -317,7 +356,17 @@
 	         for (var i=0;i<gate.length;i++) {
 		         var foo = String(gate[i]);
 		         var gatevalue = Convert(foo, y);
-		         text+= "Gt-"+gatevalue+"<br>";
+                 // Repeated digit sums in the selected ordinary (zero-based) base.
+                 var destination = gate[i];
+                 while (destination >= y.length && y.length > 1) {
+                     var remaining = destination;
+                     destination = 0;
+                     while (remaining > 0) {
+                         destination += remaining % y.length;
+                         remaining = Math.floor(remaining / y.length);
+                     }
+                 }
+                 text+= "Gt-"+gatevalue+" &ndash;&gt; Zn-"+Convert(String(destination), y)+"<br>";
 	         }
 	         document.getElementById("gate").innerHTML = text;
          }

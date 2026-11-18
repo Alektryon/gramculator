@@ -1,2 +1,2 @@
 # gramculator
-A tool that calculates #-grams.
+A tool that calculates #-grams for time sorcery.
