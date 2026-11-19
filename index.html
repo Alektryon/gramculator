@@ -346,6 +346,10 @@
 		         var current = big - i;
 		         if (current > 0) {text += Convert(String(big), y)+"::"+ Convert(String(i), y)+" => "+ Convert(String(current), y) +"<br>";}
 	         }
+             if (x >= 0 && x % 2 === 0) {
+                 var unpaired = Convert(String(x / 2), y);
+                 text += unpaired + "::" + unpaired + "<br>";
+             }
 	         document.getElementById("syzy").innerHTML = text;
          }
 
